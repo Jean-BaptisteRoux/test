@@ -7,4 +7,4 @@ jobs:
     name: A job to say hello
     steps:
       - name: Coding-style
-        run: coding-style-checker/coding-style.sh . .
+        run: ./coding-style.sh . .
