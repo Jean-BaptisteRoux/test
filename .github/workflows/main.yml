@@ -19,7 +19,7 @@ jobs:
         id: code-style
         timeout-minutes: 2
         shell: bash
-        run: echo coucoucoucoucoucoucou
+        run: tree
       - name: Make Command
         id: make_command
         timeout-minutes: 2
