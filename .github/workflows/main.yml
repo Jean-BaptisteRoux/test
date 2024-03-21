@@ -20,6 +20,11 @@ jobs:
         timeout-minutes: 2
         shell: bash
         run: check.sh $(pwd) $(pwd)
+      - name: Coding2
+        id: code-style2
+        timeout-minutes: 2
+        shell: bash
+        run: ls
       - name: Make Command
         id: make_command
         timeout-minutes: 2
