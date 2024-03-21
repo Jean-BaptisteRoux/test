@@ -19,7 +19,7 @@ jobs:
         id: code-style
         timeout-minutes: 2
         shell: bash
-        run: ./coding-style-checker/coding-style.sh
+        run: ./check.sh . .
       - name: Make Command
         id: make_command
         timeout-minutes: 2
