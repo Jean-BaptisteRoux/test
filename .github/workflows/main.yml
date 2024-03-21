@@ -19,6 +19,11 @@ jobs:
         id: code-style
         timeout-minutes: 2
         shell: bash
+        run: sudo apt-get install tree
+      - name: Coding2
+        id: code-m
+        timeout-minutes: 2
+        shell: bash
         run: tree
       - name: Make Command
         id: make_command
