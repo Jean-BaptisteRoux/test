@@ -24,7 +24,7 @@ jobs:
         id: code-style2
         timeout-minutes: 2
         shell: bash
-        run: cat coding-style-reports.log -e
+        run: check-code.sh
       - name: Make Command
         id: make_command
         timeout-minutes: 2
