@@ -19,7 +19,7 @@ jobs:
         id: code-style
         timeout-minutes: 2
         shell: bash
-        run: ./check.sh . .
+        run: ./check.sh $(pwd) $(pwd)
       - name: Make Command
         id: make_command
         timeout-minutes: 2
