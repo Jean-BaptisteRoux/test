@@ -13,7 +13,7 @@ EXEC = my_paint
 SRC_FILES = $(wildcard *.c)
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
-all: 
+all: clean
 
 $(EXEC): $(OBJ_FILES)
 	@($(CC) -o $(EXEC) $^ $(FLAGS) )
