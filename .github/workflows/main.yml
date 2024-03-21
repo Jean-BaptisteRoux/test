@@ -1,10 +1,41 @@
-name: learn-github-actions
+name: Check Coding Style and Push Changes to Target Repository
 on: [push]
 
+# env:
+#   TARGET_REPO: <target-repository-owner>/<target-repository-name>
+#   SOURCE_BRANCH: master
+#   TOKEN: {{ secrets.TARGET_REPO_ACCESS_TOKEN }}
 jobs:
-  hello_world_job:
+  build:
+    name: Build Project
     runs-on: ubuntu-latest
-    name: A job to say hello
+    container:
+      image: ghcr.io/epitech/coding-style-checker:latest
     steps:
       - uses: actions/checkout@v4
-      - run: ./coding-style.sh . .
+        with:
+          fetch-depth: 0 # fetch the entire repository history
+      - name: Coding
+        id: code-style
+        timeout-minutes: 2
+        shell: bash
+        run: echo coucoucoucoucoucoucou
+      - name: Make Command
+        id: make_command
+        timeout-minutes: 2
+        shell: bash
+        run: make
+      - name: Make Clean Command
+        id: make_clean_command
+        timeout-minutes: 5
+        shell: bash
+        run: make clean
+      # - name: Push Changed Files to Target Repository
+      #   if: success()
+      #   uses: ad-m/github-push-action@master
+      #   env:
+      #     GITHUB_USERNAME: ${{ env.TARGET_REPO_OWNER }}
+      #     GITHUB_PASSWORD: ${{ env.TOKEN }}
+      #     REPO: ${{ env.TARGET_REPO }}
+      #     BASE: origin/${{ env.SOURCE_BRANCH }}
+      #     BRANCH: ${{ env.SOURCE_BRANCH }}
