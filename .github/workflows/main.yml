@@ -1,10 +1,10 @@
 name: Check Coding Style and Push Changes to Target Repository
 on: [push]
 
-# env:
-#   TARGET_REPO: <target-repository-owner>/<target-repository-name>
-#   SOURCE_BRANCH: master
-#   TOKEN: {{ secrets.TARGET_REPO_ACCESS_TOKEN }}
+env:
+  TARGET_REPO: <target-repository-owner>/<target-repository-name>
+  SOURCE_BRANCH: master
+  TOKEN: ${{ secrets.TARGET_REPO_ACCESS_TOKEN }}
 jobs:
   build:
     name: Build Project
@@ -35,12 +35,12 @@ jobs:
         timeout-minutes: 5
         shell: bash
         run: make clean
-      # - name: Push Changed Files to Target Repository
-      #   if: success()
-      #   uses: ad-m/github-push-action@master
-      #   env:
-      #     GITHUB_USERNAME: ${{ env.TARGET_REPO_OWNER }}
-      #     GITHUB_PASSWORD: ${{ env.TOKEN }}
-      #     REPO: ${{ env.TARGET_REPO }}
-      #     BASE: origin/${{ env.SOURCE_BRANCH }}
-      #     BRANCH: ${{ env.SOURCE_BRANCH }}
+      - name: Push Changed Files to Target Repository
+        if: success()
+        uses: ad-m/github-push-action@master
+        env:
+          # GITHUB_USERNAME: ${{ env.TARGET_REPO_OWNER }}
+          # GITHUB_PASSWORD: ${{ env.TOKEN }}
+          REPO: ${{ env.repo }}
+          # BASE: origin/${{ env.SOURCE_BRANCH }}
+          # BRANCH: ${{ env.SOURCE_BRANCH }}
