@@ -1,10 +1,6 @@
 name: Check Coding Style and Push Changes to Target Repository
 on: [push]
 
-env:
-  TARGET_REPO: <target-repository-owner>/<target-repository-name>
-  SOURCE_BRANCH: master
-  SSH: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
 jobs:
   build:
     name: Build Project
