@@ -6,5 +6,5 @@
 */
 int main(void)
 {
- write(1, "coucou\n", 7);
+    write(1, "coucou\n", 7);
 }
