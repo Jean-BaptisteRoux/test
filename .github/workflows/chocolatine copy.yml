@@ -1,0 +1,41 @@
+name: Check Coding Style and Push Changes to Target Repository
+on: [push]
+
+jobs:
+  build:
+    name: Build Project
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # fetch the entire repository history
+      - name: Coding
+        id: check_coding_style
+        shell: bash
+        run: check.sh $(pwd) $(pwd)
+
+      - name: Coding2
+        id: check_program_compilation
+        timeout-minutes: 2
+        shell: bash
+        run: test -f coding-style-reports.log
+
+      - name: Make Command
+        id: run_tests
+        timeout-minutes: 2
+        shell: bash
+        run: make
+
+      - name: Make Clean Command
+        id: run_tests2
+        shell: bash
+        run: make clean
+
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            ${{ vars.MIRROR_URL }}
+          ssh_private_key:
+            ${{ secrets.GIT_SSH_PRIVATE_KEY }} 
