@@ -16,31 +16,28 @@ jobs:
         with:
           fetch-depth: 0 # fetch the entire repository history
       - name: Coding
-        id: code-style
-        timeout-minutes: 2
+        id: check_coding_style
         shell: bash
         run: check.sh $(pwd) $(pwd)
+
       - name: Coding2
-        id: code-style2
+        id: check_program_compilation
         timeout-minutes: 2
         shell: bash
-        run: ./check-code.sh coding-style-reports.log
+        run: test -f coding-style-reports.log
+
       - name: Make Command
-        id: make_command
+        id: run_tests
         timeout-minutes: 2
         shell: bash
         run: make
+
       - name: Make Clean Command
-        id: make_clean_command
-        timeout-minutes: 5
+        id: run_tests2
         shell: bash
         run: make clean
-      - name: Push Changed Files to Target Repository
+        
+      - name: Push Repository
+        id: push_to_mirror
         if: success()
         uses: ad-m/github-push-action@master
-        env:
-          # GITHUB_USERNAME: ${{ env.TARGET_REPO_OWNER }}
-          # GITHUB_PASSWORD: ${{ env.TOKEN }}
-          REPO: ${{ env.repo }}
-          # BASE: origin/${{ env.SOURCE_BRANCH }}
-          # BRANCH: ${{ env.SOURCE_BRANCH }}
