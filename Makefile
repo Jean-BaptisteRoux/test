@@ -43,3 +43,5 @@ code: fclean
 	@(cat coding-style-reports.log)
 
 re :	fclean all
+
+tests_run: clean
