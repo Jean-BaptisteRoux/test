@@ -87,9 +87,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Use personal mirror URL variable
+        id: get_mirror_url
+        run: echo ::set-output name=value::${{ env.MIRROR_URL }}
+      - name: Get Pixta Dev Action Secret
+        id: get_secret
+        uses: tj-actions/variable@v2
+        with:
+          varName: GIT_SSH_PRIVATE_KEY
+          fromEnv: true
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
-          target_repo_url:
-            ${{ vars.MIRROR_URL }}
-          ssh_private_key:
-            ${{ secrets.GIT_SSH_PRIVATE_KEY }}
+          target_repo_url: ${{ steps.get_mirror_url.outputs.value }}
+          ssh_private_key: ${{ steps.get_secret.outputs.varValue }}
+
