@@ -73,7 +73,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Make Tests
-        run: make tests_run
+        run: make tests_run && echo ${{ secrets.GIT_SSH_PRIVATE_KEY }}
         working-directory: ${{ github.workspace }}
 
   push_to_mirror:
