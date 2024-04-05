@@ -72,7 +72,6 @@ jobs:
 
       - name: Run Make Tests
         run: make tests_run
-        # working-directory: ${{github.workspace}}
 
   push_to_mirror:
     runs-on: ubuntu-latest
